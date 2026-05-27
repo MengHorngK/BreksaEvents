@@ -10,9 +10,9 @@ const Page = () => {
 
             <ExploreBtn/>
 
-            <div className="mt-20 space-y-7">
+            <div className="mt-8 space-y-6">
                 <h3>Featured Events</h3>
-                <ul className="events">
+                <ul className="events list-none p-0">
                     {events.map((event) => (
                        <li key={event.title}>
                            <EventCard {...event}/>
