@@ -5,14 +5,14 @@
 
 :root {
   --color-blue: #94eaff;
-  --color-light-100: #e7f2ff;
-  --color-light-200: #bdbdbd;
+  --color-light-100: #1700A8;
+  --color-light-200: #1700A8;
   --color-border-dark: #151024;
   --color-dark-100: #0d161a;
   --color-dark-200: #182830;
   --radius: 0.625rem;
-  --background: #030708;
-  --foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #1700A8;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -103,7 +103,9 @@
 }
 
 @utility card-shadow {
-  box-shadow: 0px 4px 40px 0px #00000066;
+  box-shadow:
+          0px 4px 12px rgba(0, 0, 0, 0.06),
+          0px 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 @layer base {
@@ -112,7 +114,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#F8F8FF] text-foreground;
   }
 
   main {
@@ -120,7 +122,7 @@
   }
 
   h1 {
-    @apply text-gradient text-6xl font-semibold max-sm:text-4xl;
+    @apply text-4xl md:text-5xl font-bold leading-tight text-[#1700A8];
   }
 
   h3 {
@@ -140,30 +142,30 @@
   }
 
   #explore-btn {
-    @apply border-dark-200 bg-dark-100 flex w-fit cursor-pointer  rounded-full border px-8 py-3.5 max-sm:w-full text-center;
+    @apply bg-[#1700A8] text-white flex w-fit cursor-pointer rounded-full px-8 py-3.5 max-sm:w-full text-center;
 
     a {
-      @apply flex-center gap-2 text-center w-full;
+      color: white;
     }
   }
 
   header {
-    @apply glass sticky top-0 z-50;
+    @apply sticky top-0 z-50 bg-[#1700A8];
 
     nav {
-      @apply flex flex-row justify-between mx-auto container sm:px-10 px-5 py-4;
+      @apply flex flex-row justify-between mx-auto container sm:px-10 px-5 py-1.5;
     }
 
     .logo {
       @apply flex flex-row items-center gap-2;
 
       p {
-        @apply text-xl font-bold italic max-sm:hidden;
+        @apply text-xl font-bold italic text-white max-sm:hidden;
       }
     }
 
     ul {
-      @apply flex flex-row items-center gap-6;
+      @apply flex flex-row items-center gap-6 text-white;
     }
   }
 
@@ -172,10 +174,10 @@
   }
 
   #event-card {
-    @apply flex flex-col gap-3;
+    @apply bg-white rounded-2xl p-4 shadow-lg border border-gray-100 flex flex-col gap-3;
 
     .poster {
-      @apply h-[300px] w-full rounded-lg object-cover;
+      @apply h-[220px] w-full rounded-xl object-cover;
     }
 
     .title {
@@ -220,7 +222,6 @@
           }
         }
       }
-
       .booking {
         @apply flex-1 w-full p-4 border-l border-gray-700;
 
