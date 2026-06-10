@@ -13,6 +13,8 @@ interface IBooking {
   email: string
   createdAt: Date
   updatedAt: Date
+  slug: string
+
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -24,6 +26,12 @@ const bookingSchema = new Schema<IBooking>(
       ref: "Event",
       required: true,
       index: true,
+
+    },
+    slug: {
+      type: String,
+      required: true,
+      trim: true,
     },
     email: {
       type: String,
@@ -52,7 +60,7 @@ bookingSchema.pre("save", async function preSave(this: HydratedDocument<IBooking
   this.email = normalizedEmail
 
   // Prevent orphaned bookings by checking the referenced event exists.
-  const eventExists = await Event.exists({ _id: this.eventId })
+  const eventExists = await Event.exists({ _id: this.eventId.toString() })
   if (!eventExists) {
     throw new Error("Referenced event does not exist.")
   }

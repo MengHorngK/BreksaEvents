@@ -11,8 +11,8 @@
   --color-dark-100: #0d161a;
   --color-dark-200: #182830;
   --radius: 0.625rem;
-  --background: #030708;
-  --foreground: #ffffff;
+  --background: #F3F4FA;
+  --foreground: #12244A;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -112,19 +112,27 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+      background: #F3EEE9;
+      color: #12244A;
   }
 
   main {
-    @apply mx-auto container flex flex-col sm:px-10 px-5 py-10;
+    @apply mx-auto container flex flex-col sm:px-10 px-5;
+    padding-top: 35px;
+    padding-bottom: 80px;
   }
 
   h1 {
-    @apply text-gradient text-6xl font-semibold max-sm:text-4xl;
+    font-size: 36px;
+    line-height: 1.15;
+    font-weight: 750;
+    color: #12244A;
   }
 
   h3 {
-    @apply font-schibsted-grotesk text-2xl font-bold;
+    font-size: 20px;
+    font-weight: 700;
+    color: #12244A;
   }
 
   ul {
@@ -135,20 +143,42 @@
 @layer components {
   #home {
     .subheading {
-      @apply text-light-100 text-lg max-sm:text-sm text-center mt-5;
+      @apply text-lg max-sm:text-sm text-center mt-5;
+      color: #12244A;
+
     }
   }
 
   #explore-btn {
-    @apply border-dark-200 bg-dark-100 flex w-fit cursor-pointer  rounded-full border px-8 py-3.5 max-sm:w-full text-center;
+    background: #12244A;
+    color: white;
 
-    a {
-      @apply flex-center gap-2 text-center w-full;
-    }
+    width: 220px;
+    height: 52px;
+
+    margin: 28px auto 0;
+
+    border-radius: 999px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    transition: 0.25s ease;
+  }
+
+  #explore-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(23, 0, 168, 0.18);
   }
 
   header {
-    @apply glass sticky top-0 z-50;
+    @apply sticky top-0 z-50;
+    background-color: #12244A;
 
     nav {
       @apply flex flex-row justify-between mx-auto container sm:px-10 px-5 py-4;
@@ -159,40 +189,61 @@
 
       p {
         @apply text-xl font-bold italic max-sm:hidden;
+        color: white;
       }
     }
 
     ul {
       @apply flex flex-row items-center gap-6;
     }
+
+    a {
+      color: white;
+    }
   }
 
   .events {
-    @apply grid md:grid-cols-3 gap-10 sm:grid-cols-2 grid-cols-1;
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
+    gap: 28px;
   }
 
-  #event-card {
-    @apply flex flex-col gap-3;
+  #events-card {
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 10px 28px rgba(23, 0, 168, 0.1);
+    transition: 0.25s ease;
+    width: 100%;
+    max-width: 360px;
+    display: block;
+  }
 
-    .poster {
-      @apply h-[300px] w-full rounded-lg object-cover;
-    }
+  #events-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(23, 0, 168, 0.16);
+  }
 
-    .title {
-      @apply text-[20px] font-semibold line-clamp-1;
-    }
+  .poster {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
 
-    p {
-      @apply text-light-200 text-sm font-light;
-    }
+  .title {
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 800;
+    color: #12244A;
+  }
 
-    .datetime {
-      @apply text-light-200 flex flex-row flex-wrap items-center gap-4;
-
-      div {
-        @apply flex flex-row gap-2;
-      }
-    }
+  .datetime {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 8px;
+    color: #12244A;
+    font-size: 14px;
   }
 
   #event {
@@ -215,7 +266,9 @@
 
           ul {
             li {
-              @apply text-light-100 text-lg max-sm:text-sm;
+              color: #12244A;
+              font-size: 15px;
+              line-height: 1.7;
             }
           }
         }
@@ -225,7 +278,12 @@
         @apply flex-1 w-full p-4 border-l border-gray-700;
 
         .signup-card {
-          @apply bg-dark-100 border-dark-200 card-shadow flex w-full flex-col gap-6 rounded-[10px] border px-5 py-6;
+          background: white;
+          box-shadow: 0 10px 30px rgba(23, 0, 168, 0.08);
+          border-radius: 20px;
+          padding: 28px 24px;
+
+          @apply flex w-full flex-col gap-6;
         }
       }
     }
@@ -235,7 +293,9 @@
     }
 
     p {
-      @apply text-light-100 text-lg max-sm:text-sm;
+      color: #12244A;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
     .flex-col-gap-2 {
@@ -248,7 +308,11 @@
   }
 
   .pill {
-    @apply bg-dark-100 text-light-100 text-xs rounded-[6px] px-5 py-2;
+    background: #12244A;
+    color: white;
+    font-size: 12px;
+    border-radius: 999px;
+    padding: 8px 16px;
   }
 
   #book-event {
@@ -266,7 +330,9 @@
       }
 
       button {
-        @apply bg-primary hover:bg-primary/90 w-full cursor-pointer items-center justify-center rounded-[6px] px-4 py-2.5 text-lg font-semibold text-black;
+        @apply w-full cursor-pointer items-center justify-center rounded-[12px] px-4 py-2.5 text-lg font-semibold text-white;
+
+        background: #12244A;
       }
     }
   }
