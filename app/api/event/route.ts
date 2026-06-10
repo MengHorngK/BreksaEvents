@@ -11,7 +11,6 @@ const parseStringArray = (value: FormDataEntryValue | null): string[] => {
     const parsed = JSON.parse(value);
 
     if (Array.isArray(parsed)) {
-        // Fix case like: ['["Education","Admissions"]']
         if (
             parsed.length === 1 &&
             typeof parsed[0] === "string" &&
@@ -35,10 +34,20 @@ export async function POST(req: NextRequest) {
         const event = Object.fromEntries(formData.entries());
 
         const file = formData.get("image") as File | null;
+        const formLink = formData.get("formLink") as string;
+        console.log("FORM LINK FROM HTTPie:", formLink);
+        console.log("ALL FORM DATA:", Object.fromEntries(formData.entries()));
 
         if (!file) {
             return NextResponse.json(
                 { message: "Image file is required" },
+                { status: 400 }
+            );
+        }
+
+        if (!formLink) {
+            return NextResponse.json(
+                { message: "Google Form link is required" },
                 { status: 400 }
             );
         }
@@ -49,27 +58,29 @@ export async function POST(req: NextRequest) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
-        const uploadResult = await new Promise((resolve, reject) => {
-            cloudinary.uploader
-                .upload_stream(
-                    { resource_type: "image", folder: "breksa-event" },
-                    (error, result) => {
-                        if (error) {
-                            reject(error);
-                        } else {
-                            resolve(result);
+        const uploadResult = await new Promise<{ secure_url: string }>(
+            (resolve, reject) => {
+                cloudinary.uploader
+                    .upload_stream(
+                        { resource_type: "image", folder: "breksa-event" },
+                        (error, result) => {
+                            if (error || !result) {
+                                reject(error);
+                            } else {
+                                resolve(result as { secure_url: string });
+                            }
                         }
-                    }
-                )
-                .end(buffer);
-        });
-
-        event.image = (uploadResult as { secure_url: string }).secure_url;
+                    )
+                    .end(buffer);
+            }
+        );
 
         const createdEvent = await Event.create({
             ...event,
+            image: uploadResult.secure_url,
             tags,
             agenda,
+            formLink,
         });
 
         return NextResponse.json(

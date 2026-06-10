@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import BookEvent from "@/components/BookEvent";
 import {IEvent} from "@/database/event.model";
 import {getSimilarEventsBySlug} from "@/lib/actions/event.actions";
 import EventCard from "@/components/EventCard";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 const EventDetailItem =({icon,alt,label}:{icon:string;alt:string;label:string}) =>{
     return(
         <div className={"flex flex-row-gap-2 items-center"}>
@@ -53,7 +53,8 @@ const EventDetailsPage = async ({params,}: {
     const data = await request.json();
 
     const event = data.event ?? data;
-
+    console.log("EVENT DATA:", event);
+    console.log("FORM LINK:", event.formLink);
     if (!event) return notFound();
 
     const {
@@ -68,6 +69,7 @@ const EventDetailsPage = async ({params,}: {
         audience,
         tags,
         organizer,
+
     } = event;
 
     if (!description) return notFound();
@@ -113,18 +115,43 @@ const EventDetailsPage = async ({params,}: {
                     </section>
                     <EventTags tags={(tags)}/>
                 </div>
-
                 <aside className="booking">
-                    <div className={"signup-card"}>
-                        <h2>Book Your Spot</h2>
+                    <div className="signup-card">
                         {bookings > 0 ? (
-                            <p className={"text-sm"} > Join {bookings} people who have already booked their spot! </p>
-                        ): (
-                            <p className={"text-sm"}>Be the first to book your spot!</p>
+                            <p className="text-sm">
+                                Join other people who have already booked their spot!
+                            </p>
+                        ) : (
+                            <p className="text-sm">Be the first to book your spot!</p>
                         )}
-                        <BookEvent eventId={event._id} slug={event.slug}/>
-                    </div>
 
+                        {event.formLink ? (
+                            <a
+                                href={event.formLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="
+                                inline-flex
+                                w-full
+                                items-center
+                                justify-center
+                                rounded-lg
+                                bg-[#12244A]
+                                px-6
+                                py-3
+                                text-white
+                                font-semibold
+                                transition-all
+                                duration-200
+                                hover:opacity-90
+                              "
+                            >
+                                Book Your Spot
+                            </a>
+                        ) : (
+                            <p className="text-sm">No Google Form link found for this event.</p>
+                        )}
+                    </div>
                 </aside>
             </div>
 
@@ -137,7 +164,7 @@ const EventDetailsPage = async ({params,}: {
                         {similarEvents.length > 0 ? (
                             similarEvents.map((similarEvent: IEvent) => (
                                 <EventCard
-                                    key={similarEvent._id}
+                                    key={similarEvent._id.toString()}
                                     {...similarEvent}
                                 />
                             ))

@@ -12,7 +12,7 @@
   --color-dark-200: #182830;
   --radius: 0.625rem;
   --background: #F3F4FA;
-  --foreground: #1700A8;
+  --foreground: #12244A;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -112,8 +112,8 @@
   }
 
   body {
-      background: #F5F7FF;
-      color: #1700A8;
+      background: #F3EEE9;
+      color: #12244A;
   }
 
   main {
@@ -126,13 +126,13 @@
     font-size: 36px;
     line-height: 1.15;
     font-weight: 750;
-    color: #1700A8;
+    color: #12244A;
   }
 
   h3 {
     font-size: 20px;
     font-weight: 700;
-    color: #1700A8;
+    color: #12244A;
   }
 
   ul {
@@ -144,13 +144,13 @@
   #home {
     .subheading {
       @apply text-lg max-sm:text-sm text-center mt-5;
-      color: #1700A8;
+      color: #12244A;
 
     }
   }
 
   #explore-btn {
-    background: #1700A8;
+    background: #12244A;
     color: white;
 
     width: 220px;
@@ -178,7 +178,7 @@
 
   header {
     @apply sticky top-0 z-50;
-    background-color: #1700A8;
+    background-color: #12244A;
 
     nav {
       @apply flex flex-row justify-between mx-auto container sm:px-10 px-5 py-4;
@@ -234,7 +234,7 @@
     margin-top: 16px;
     font-size: 20px;
     font-weight: 800;
-    color: #1700A8;
+    color: #12244A;
   }
 
   .datetime {
@@ -242,7 +242,7 @@
     align-items: center;
     gap: 18px;
     margin-top: 8px;
-    color: #1700A8;
+    color: #12244A;
     font-size: 14px;
   }
 
@@ -266,7 +266,7 @@
 
           ul {
             li {
-              color: #1700A8;
+              color: #12244A;
               font-size: 15px;
               line-height: 1.7;
             }
@@ -293,7 +293,7 @@
     }
 
     p {
-      color: #1700A8;
+      color: #12244A;
       font-size: 15px;
       line-height: 1.7;
     }
@@ -308,7 +308,7 @@
   }
 
   .pill {
-    background: #1700A8;
+    background: #12244A;
     color: white;
     font-size: 12px;
     border-radius: 999px;
@@ -332,7 +332,7 @@
       button {
         @apply w-full cursor-pointer items-center justify-center rounded-[12px] px-4 py-2.5 text-lg font-semibold text-white;
 
-        background: #1700A8;
+        background: #12244A;
       }
     }
   }

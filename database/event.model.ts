@@ -26,6 +26,7 @@ export interface IEvent {
     tags: string[];
     createdAt: Date;
     updatedAt: Date;
+    formLink: string;
 }
 
 type RequiredStringField =
@@ -39,7 +40,8 @@ type RequiredStringField =
     | "time"
     | "mode"
     | "audience"
-    | "organizer";
+    | "organizer"
+    | "formLink";
 
 const requiredStringFields: RequiredStringField[] = [
     "title",
@@ -53,6 +55,7 @@ const requiredStringFields: RequiredStringField[] = [
     "mode",
     "audience",
     "organizer",
+    "formLink",
 ];
 
 function createSlug(input: string): string {
@@ -153,6 +156,11 @@ const eventSchema = new Schema<IEvent>(
                 validator: (values: string[]) => values.length > 0,
                 message: "Tags must contain at least one item.",
             },
+        },
+        formLink: {
+            type: String,
+            required: true,
+            trim: true,
         },
     },
     {

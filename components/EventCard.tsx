@@ -34,7 +34,7 @@ const EventCard = ({
             <p className="title mt-4\">{title}</p>
 
             {/* Location */}
-            <div className="flex items-center gap-2 mt-2 text-sm text-[#1700A8]">
+            <div className="flex items-center gap-2 mt-2 text-sm text-[#12244A]">
                 <Image
                     src="/icons/pin.svg"
                     alt="location"

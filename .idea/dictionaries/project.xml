@@ -2,7 +2,10 @@
   <dictionary name="project">
     <words>
       <w>Grotesk</w>
+      <w>applicationlink</w>
+      <w>mainlabel</w>
       <w>schibsted</w>
+      <w>shortdescription</w>
     </words>
   </dictionary>
 </component>

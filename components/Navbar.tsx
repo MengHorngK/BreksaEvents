@@ -4,14 +4,16 @@ import Image from "next/image";
 const Navbar = () => {
     return (
         <header>
-            <nav className="w-full h-20 px-10 bg-[#1700A8] flex items-center">
+            <nav className="w-full h-20 px-10 bg-[#12244A] flex items-center">
                 <Link href='/' className="logo">
-                    <Image src="/icons/logo1.png" alt="logo" width={75} height={75}/>
-                    <p>Breksa Events</p>
+                    <Image src="/icons/logo.png" alt="logo" width={75} height={75}/>
                 </Link>
                 <ul>
-                    <Link href="/">Home</Link>
-                    <Link href="/">Events</Link>
+                    <Link href="/homepage">Home</Link>
+                    <Link href="/mentorship">Mentorship</Link>
+                    <Link href="/eventfunction">Events</Link>
+                    <Link href="/infohub">InfoHub</Link>
+                    <Link href="/profile">Profile</Link>
                 </ul>
             
             </nav>
